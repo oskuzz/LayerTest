@@ -27,15 +27,15 @@ namespace LayerTest
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
+            /*app.Run(async (context) =>
             {
                 
 
                // await context.Response.WriteAsync("Hello World!");
-            });
+            });*/
             app.UseMvc(routes =>
                 {
-                    routes.MapRoute("default", "{controller=Home}/{action=index}/{id?}");
+                    routes.MapRoute("Default", "{controller=Default}/{action=Index}/{id?}");
                 });
         }
     }
