@@ -5,6 +5,27 @@
 }
 <html>
 <body>
-	<h1>asdasdasdasd</h1>
+    <h2>Books</h2>
+
+    @{ foreach (var a in ViewBag.test)
+        {
+            <h1>@a.BookID</h1>
+            <h2>@a.BookName</h2>
+            <h3>@a.Description</h3>
+            <h4>@a.Price</h4>
+            <h5>@a.CreatorID</h5>
+        }
+        <br />
+        <h2>Movies</h2>
+        foreach (var a in ViewBag.test2)
+        {
+            <h1>@a.MovieID</h1>
+            <h2>@a.MovieName</h2>
+            <h3>@a.Description</h3>
+            <h4>@a.Price</h4>
+            <h5>@a.CreatorID</h5>
+        }
+    }
+
 </body>
 </html>

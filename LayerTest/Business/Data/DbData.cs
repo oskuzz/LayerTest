@@ -17,5 +17,14 @@ namespace Business.Data
 
             }
         }
+
+        public List<Movies> test2()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                return context.Movies.ToList();
+
+            }
+        }
     }
 }

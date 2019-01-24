@@ -9,7 +9,7 @@ namespace PersistenceLayer.DBContext
 {
     public class ApplicationDbContext : DbContext
     {
-        public string ConnectionString = @"Server = DESKTOP-CBALK4D\SQLEXPRESS; Database = LayerDB; Trusted_Connection = true";
+        public string ConnectionString = @"Server = ODE10-2015; Database = LayerDB; Trusted_Connection = true";
 
         public DbSet<Books> Books { get; set; }
         public DbSet<Creators> Creators { get; set; }
@@ -47,8 +47,14 @@ namespace PersistenceLayer.DBContext
             modelBuilder.Entity<Books>().HasData(
                 new Books { BookID = 1, BookName = "Venäjä", Description = "Kertoo venäjästä", Price = "3000 rub", CreatorID = 1 });
 
+            modelBuilder.Entity<Books>().HasData(
+                new Books { BookID = 2, BookName = "Russia", Description = "Mother Russia", Price = "6000 rub", CreatorID = 1 });
+
             modelBuilder.Entity<Movies>().HasData(
                 new Movies { MovieID = 1, MovieName = "Venäjä the movie", Description = "Suosittelen", Price = "4000 rub", CreatorID = 1 });
+
+            modelBuilder.Entity<Movies>().HasData(
+                new Movies { MovieID = 2, MovieName = "The Indian TechSubbord", Description = "Hyi", Price = "1000 €", CreatorID = 1 });
         }
 
     }

@@ -12,8 +12,11 @@ namespace LayerTest.UI.Controllers
     {
         DbData data = new DbData();
 
+
         public IActionResult Index()
         {
+            ViewBag.test = data.test();
+            ViewBag.test2 = data.test2();
             return View();
         }
     }

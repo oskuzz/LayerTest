@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DBLayer\DBLayer.csproj" />
-    <ProjectReference Include="..\PersistenceLayer\PersistenceLayer.csproj" />
+    <ProjectReference Include="..\DBLayer\Database.csproj" />
+    <ProjectReference Include="..\PersistenceLayer\Persistence.csproj" />
   </ItemGroup>
 
 </Project>

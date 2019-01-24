@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersistenceLayer.DBContext;
 
 namespace PersistenceLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190124103528_seed2")]
+    partial class seed2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,14 +107,6 @@ namespace PersistenceLayer.Migrations
                             Description = "Suosittelen",
                             MovieName = "Venäjä the movie",
                             Price = "4000 rub"
-                        },
-                        new
-                        {
-                            MovieID = 2,
-                            CreatorID = 1,
-                            Description = "Hyi",
-                            MovieName = "The Indian TechSubbord",
-                            Price = "1000 €"
                         });
                 });
 
