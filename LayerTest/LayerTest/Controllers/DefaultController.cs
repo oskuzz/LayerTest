@@ -12,11 +12,13 @@ namespace LayerTest.UI.Controllers
     {
         DbData data = new DbData();
 
-
         public IActionResult Index()
         {
-            ViewBag.test = data.test();
-            ViewBag.test2 = data.test2();
+            if (Request.Method == "POST")
+            {
+                var homo1 = Request[];
+            }
+                     
             return View();
         }
     }

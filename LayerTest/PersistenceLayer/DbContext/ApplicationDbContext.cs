@@ -1,4 +1,4 @@
-﻿using DBLayer.Database.Tables;
+﻿using Database.Database.Tables;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,6 +14,7 @@ namespace PersistenceLayer.DBContext
         public DbSet<Books> Books { get; set; }
         public DbSet<Creators> Creators { get; set; }
         public DbSet<Movies> Movies { get; set; }
+        public DbSet<Customer> Customer { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -23,6 +24,7 @@ namespace PersistenceLayer.DBContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Books>()
                 .ToTable("Books", schema: "Service");
 
@@ -32,6 +34,9 @@ namespace PersistenceLayer.DBContext
             modelBuilder.Entity<Movies>()
                 .ToTable("Movies", schema: "Service");
 
+            modelBuilder.Entity<Customer>()
+                .ToTable("Customer", schema: "Service");
+
             modelBuilder.Entity<Books>()
                 .HasKey(b => b.BookID);
 
@@ -40,6 +45,9 @@ namespace PersistenceLayer.DBContext
 
             modelBuilder.Entity<Movies>()
                 .HasKey(m => m.MovieID);
+
+            modelBuilder.Entity<Customer>()
+                .HasKey(c => c.CustomerID);
 
             modelBuilder.Entity<Creators>().HasData(
                 new Creators { CreatorID = 1, CreatorName = "Putin" });

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DBLayer.Database.Tables
+namespace Database.Database.Tables
 {
     
     public class Movies

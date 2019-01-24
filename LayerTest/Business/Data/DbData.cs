@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PersistenceLayer.DBContext;
-using DBLayer.Database.Tables;
+using Database.Database.Tables;
 
 namespace Business.Data
 {  

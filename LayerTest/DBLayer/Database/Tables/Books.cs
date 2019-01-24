@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace DBLayer.Database.Tables
+namespace Database.Database.Tables
 {
     public class Books
     {
