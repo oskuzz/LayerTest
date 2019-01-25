@@ -10,16 +10,27 @@ namespace Business.Logic
     public class UserActions
     {
 
-        public List<Customer> getUser(string huuhtista)
+        public List<Customer> getUser(string userName, string password)
         {
             using (var dog = new ApplicationDbContext())
             {
-                var getUser = dog.Customer
-                    .Where(c => c.UserName == huuhtista)
+                var user = dog.Customer
+                    .Where(c => c.UserName == userName & c.Password == password)
                     .ToList();
 
-                return getUser;
+                foreach (var u in user)
+                {
+                    if (u.UserName.Equals(userName) && u.Password.Equals(password))
+                    {
+                        return user;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
             }
+            return null;
         }
 
     }

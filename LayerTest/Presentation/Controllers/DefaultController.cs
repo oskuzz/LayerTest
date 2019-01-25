@@ -20,19 +20,13 @@ namespace Presentation.Controllers
             if (Request.Method == "POST")
             {
                 var Uname = Request.Form["UserName"];
+                var Password = Request.Form["Password"];
 
-                if(!Uname.Equals(""))
+                if(!Uname.Equals("") && !Password.Equals(""))
                 {
-                    ViewBag.User = userActions.getUser(Uname);
-                } else
-                {
-                    throw new Exception("Ei toimi");
-                }
-            }
-
-            
-
-                     
+                    ViewBag.User = userActions.getUser(Uname, Password);
+                } 
+            }       
             return View();
         }
 

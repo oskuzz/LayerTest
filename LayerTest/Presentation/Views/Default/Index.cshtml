@@ -20,15 +20,23 @@
         @{
             if (ViewBag.User != null)
             {
+                <p>Kirjautuminen onnistui</p>
                 foreach (var a in ViewBag.User)
                 {
-                    <h2>@a.CustomerID</h2>
-                    <h2>@a.UserName</h2>
-                    <h2>@a.Password</h2>
-                    <h2>@a.Role</h2>
+                    <h3>@a.UserName</h3>
+                    <h3>@a.Password</h3>
                 }
+            }
+            else
+            {
+                <p>Kirjautuminen epäonnistui</p>
             }
         }
     </div>
+    <div>
+        
+    </div>
+
+
 </body>
 </html>
