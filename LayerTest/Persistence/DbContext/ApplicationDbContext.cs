@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PersistenceLayer.DBContext
+namespace Persistence.DBContext
 {
     public class ApplicationDbContext : DbContext
     {
-        public string ConnectionString = @"Server = ODE10-2015; Database = LayerDB; Trusted_Connection = true";
+        public string ConnectionString = @"Server = DESKTOP-CBALK4D\SQLEXPRESS; Database = LayerDB; Trusted_Connection = true";
 
         public DbSet<Books> Books { get; set; }
         public DbSet<Creators> Creators { get; set; }
@@ -63,6 +63,9 @@ namespace PersistenceLayer.DBContext
 
             modelBuilder.Entity<Movies>().HasData(
                 new Movies { MovieID = 2, MovieName = "The Indian TechSubbord", Description = "Hyi", Price = "1000 €", CreatorID = 1 });
+
+            modelBuilder.Entity<Customer>().HasData(
+                new Customer { CustomerID = 1, UserName = "Asd", Password = "Asd-123", Role = "Admin" });
         }
 
     }

@@ -4,23 +4,23 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PersistenceLayer.DBContext;
+using Persistence.DBContext;
 
 namespace PersistenceLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190124103854_seed3")]
-    partial class seed3
+    [Migration("20190125122930_Seed5")]
+    partial class Seed5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
+                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DBLayer.Database.Tables.Books", b =>
+            modelBuilder.Entity("Database.Database.Tables.Books", b =>
                 {
                     b.Property<int>("BookID")
                         .ValueGeneratedOnAdd()
@@ -59,7 +59,7 @@ namespace PersistenceLayer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DBLayer.Database.Tables.Creators", b =>
+            modelBuilder.Entity("Database.Database.Tables.Creators", b =>
                 {
                     b.Property<int>("CreatorID")
                         .ValueGeneratedOnAdd()
@@ -79,7 +79,33 @@ namespace PersistenceLayer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DBLayer.Database.Tables.Movies", b =>
+            modelBuilder.Entity("Database.Database.Tables.Customer", b =>
+                {
+                    b.Property<int>("CustomerID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Password");
+
+                    b.Property<string>("Role");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("CustomerID");
+
+                    b.ToTable("Customer","Service");
+
+                    b.HasData(
+                        new
+                        {
+                            CustomerID = 1,
+                            Password = "Asd-123",
+                            Role = "Admin",
+                            UserName = "Asd"
+                        });
+                });
+
+            modelBuilder.Entity("Database.Database.Tables.Movies", b =>
                 {
                     b.Property<int>("MovieID")
                         .ValueGeneratedOnAdd()
@@ -118,17 +144,17 @@ namespace PersistenceLayer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DBLayer.Database.Tables.Books", b =>
+            modelBuilder.Entity("Database.Database.Tables.Books", b =>
                 {
-                    b.HasOne("DBLayer.Database.Tables.Creators", "creator")
+                    b.HasOne("Database.Database.Tables.Creators", "creator")
                         .WithMany()
                         .HasForeignKey("CreatorID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBLayer.Database.Tables.Movies", b =>
+            modelBuilder.Entity("Database.Database.Tables.Movies", b =>
                 {
-                    b.HasOne("DBLayer.Database.Tables.Creators", "creator")
+                    b.HasOne("Database.Database.Tables.Creators", "creator")
                         .WithMany()
                         .HasForeignKey("CreatorID")
                         .OnDelete(DeleteBehavior.Cascade);

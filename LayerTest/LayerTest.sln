@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "LayerTest\Presentation.csproj", "{B29860DE-5395-4E4B-97F6-DA62F36C5179}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "Presentation\Presentation.csproj", "{B29860DE-5395-4E4B-97F6-DA62F36C5179}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "DBLayer\Database.csproj", "{089E71E4-B6BE-4E43-B371-2400455B3654}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{089E71E4-B6BE-4E43-B371-2400455B3654}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "PersistenceLayer\Persistence.csproj", "{9D368BE5-C50E-4D97-8463-33F45E9884E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{9D368BE5-C50E-4D97-8463-33F45E9884E7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{E4EA0AF4-52CD-4630-A511-372B5E16F7A8}"
 EndProject

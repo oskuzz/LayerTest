@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PersistenceLayer.DBContext;
+using Persistence.DBContext;
 
 namespace PersistenceLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190124161538_seed4")]
-    partial class seed4
+    [Migration("20190123124750_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,7 +20,7 @@ namespace PersistenceLayer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Database.Database.Tables.Books", b =>
+            modelBuilder.Entity("DBLayer.Database.Tables.Books", b =>
                 {
                     b.Property<int>("BookID")
                         .ValueGeneratedOnAdd()
@@ -39,27 +39,9 @@ namespace PersistenceLayer.Migrations
                     b.HasIndex("CreatorID");
 
                     b.ToTable("Books","Service");
-
-                    b.HasData(
-                        new
-                        {
-                            BookID = 1,
-                            BookName = "Venäjä",
-                            CreatorID = 1,
-                            Description = "Kertoo venäjästä",
-                            Price = "3000 rub"
-                        },
-                        new
-                        {
-                            BookID = 2,
-                            BookName = "Russia",
-                            CreatorID = 1,
-                            Description = "Mother Russia",
-                            Price = "6000 rub"
-                        });
                 });
 
-            modelBuilder.Entity("Database.Database.Tables.Creators", b =>
+            modelBuilder.Entity("DBLayer.Database.Tables.Creators", b =>
                 {
                     b.Property<int>("CreatorID")
                         .ValueGeneratedOnAdd()
@@ -70,33 +52,9 @@ namespace PersistenceLayer.Migrations
                     b.HasKey("CreatorID");
 
                     b.ToTable("Creators","Service");
-
-                    b.HasData(
-                        new
-                        {
-                            CreatorID = 1,
-                            CreatorName = "Putin"
-                        });
                 });
 
-            modelBuilder.Entity("Database.Database.Tables.Customer", b =>
-                {
-                    b.Property<int>("CustomerID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("passWord");
-
-                    b.Property<string>("role");
-
-                    b.Property<string>("userName");
-
-                    b.HasKey("CustomerID");
-
-                    b.ToTable("Customer","Service");
-                });
-
-            modelBuilder.Entity("Database.Database.Tables.Movies", b =>
+            modelBuilder.Entity("DBLayer.Database.Tables.Movies", b =>
                 {
                     b.Property<int>("MovieID")
                         .ValueGeneratedOnAdd()
@@ -115,37 +73,19 @@ namespace PersistenceLayer.Migrations
                     b.HasIndex("CreatorID");
 
                     b.ToTable("Movies","Service");
-
-                    b.HasData(
-                        new
-                        {
-                            MovieID = 1,
-                            CreatorID = 1,
-                            Description = "Suosittelen",
-                            MovieName = "Venäjä the movie",
-                            Price = "4000 rub"
-                        },
-                        new
-                        {
-                            MovieID = 2,
-                            CreatorID = 1,
-                            Description = "Hyi",
-                            MovieName = "The Indian TechSubbord",
-                            Price = "1000 €"
-                        });
                 });
 
-            modelBuilder.Entity("Database.Database.Tables.Books", b =>
+            modelBuilder.Entity("DBLayer.Database.Tables.Books", b =>
                 {
-                    b.HasOne("Database.Database.Tables.Creators", "creator")
+                    b.HasOne("DBLayer.Database.Tables.Creators", "creator")
                         .WithMany()
                         .HasForeignKey("CreatorID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Database.Database.Tables.Movies", b =>
+            modelBuilder.Entity("DBLayer.Database.Tables.Movies", b =>
                 {
-                    b.HasOne("Database.Database.Tables.Creators", "creator")
+                    b.HasOne("DBLayer.Database.Tables.Creators", "creator")
                         .WithMany()
                         .HasForeignKey("CreatorID")
                         .OnDelete(DeleteBehavior.Cascade);
