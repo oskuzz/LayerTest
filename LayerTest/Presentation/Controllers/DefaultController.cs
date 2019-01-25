@@ -4,11 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Business.Logic;
 
 namespace Presentation.Controllers
 {
     public class DefaultController : Controller
     {
+
+        private UserActions userActions = new UserActions();
 
         public string asd = "Asd";
 
@@ -17,9 +20,22 @@ namespace Presentation.Controllers
             if (Request.Method == "POST")
             {
                 var Uname = Request.Form["UserName"];
+
+                if(!Uname.Equals(""))
+                {
+                    ViewBag.User = userActions.getUser(Uname);
+                } else
+                {
+                    throw new Exception("Ei toimi");
+                }
             }
+
+            
+
                      
             return View();
         }
+
+
     }
 }

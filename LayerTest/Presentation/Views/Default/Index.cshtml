@@ -16,5 +16,19 @@
             <button name="loginBtn" type="submit">Log in</button>
         </form>
     </div>
+    <div>
+        @{
+            if (ViewBag.User != null)
+            {
+                foreach (var a in ViewBag.User)
+                {
+                    <h2>@a.CustomerID</h2>
+                    <h2>@a.UserName</h2>
+                    <h2>@a.Password</h2>
+                    <h2>@a.Role</h2>
+                }
+            }
+        }
+    </div>
 </body>
 </html>
