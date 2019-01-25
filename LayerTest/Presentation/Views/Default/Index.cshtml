@@ -15,28 +15,10 @@
             <br />
             <button name="loginBtn" type="submit">Log in</button>
         </form>
+        <div>
+            <a href="register">Register</a>
+        </div>
     </div>
-    <div>
-        @{
-            if (ViewBag.User != null)
-            {
-                <p>Kirjautuminen onnistui</p>
-                foreach (var a in ViewBag.User)
-                {
-                    <h3>@a.UserName</h3>
-                    <h3>@a.Password</h3>
-                }
-            }
-            else
-            {
-                <p>Kirjautuminen epäonnistui</p>
-            }
-        }
-    </div>
-    <div>
-        
-    </div>
-
 
 </body>
 </html>

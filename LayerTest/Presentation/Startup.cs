@@ -35,7 +35,7 @@ namespace LayerTest
             });*/
             app.UseMvc(routes =>
                 {
-                    routes.MapRoute("Default", "{controller=Default}/{action=Index}/{id?}");
+                    routes.MapRoute("Default", "{controller}/{action}/{id?}");
                 });
         }
     }

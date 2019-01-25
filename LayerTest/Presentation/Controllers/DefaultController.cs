@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Business.Logic;
+using Persistence.DbContext;
+using Database.Database.Tables;
 
 namespace Presentation.Controllers
 {
@@ -12,8 +14,7 @@ namespace Presentation.Controllers
     {
 
         private UserActions userActions = new UserActions();
-
-        public string asd = "Asd";
+        private ApplicationDbContext context = new ApplicationDbContext();
 
         public IActionResult Index()
         {
@@ -27,6 +28,15 @@ namespace Presentation.Controllers
                     ViewBag.User = userActions.getUser(Uname, Password);
                 } 
             }       
+            return View();
+        }
+
+        public IActionResult Register([Bind("UserName, Password, Role")] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Customer.Add(customer); 
+            }
             return View();
         }
 
