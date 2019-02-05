@@ -14,7 +14,6 @@ namespace Business.Data
             using (var context = new ApplicationDbContext())
             {
                 return context.Books.ToList();
-
             }
         }
 

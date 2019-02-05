@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Business.Logic;
-using Persistence.DbContext;
+using Persistence.DBContext;
 using Database.Database.Tables;
 
 namespace Presentation.Controllers
@@ -35,7 +35,9 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                context.Customer.Add(customer); 
+                context.Customer.Add(customer);
+                context.SaveChanges();
+                //return RedirectToAction("Index");
             }
             return View();
         }
