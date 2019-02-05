@@ -18,6 +18,20 @@
         <div>
             <a href="register">Register</a>
         </div>
+        <div>
+            @{ 
+                if (ViewBag.User != null)
+                {
+                    <h2>Onnistui</h2>
+                    ViewBag.User = null;
+                } else
+                {
+                    <h2>Epäonnistui</h2>
+                    ViewBag.User = null;
+                }
+
+            }
+        </div>
     </div>
 
 </body>

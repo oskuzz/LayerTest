@@ -23,11 +23,11 @@ namespace Presentation.Controllers
                 var Uname = Request.Form["UserName"];
                 var Password = Request.Form["Password"];
 
-                if(!Uname.Equals("") && !Password.Equals(""))
+                if (!Uname.Equals("") && !Password.Equals(""))
                 {
                     ViewBag.User = userActions.getUser(Uname, Password);
-                } 
-            }       
+                }
+            }
             return View();
         }
 
@@ -37,7 +37,6 @@ namespace Presentation.Controllers
             {
                 context.Customer.Add(customer);
                 context.SaveChanges();
-                //return RedirectToAction("Index");
             }
             return View();
         }
