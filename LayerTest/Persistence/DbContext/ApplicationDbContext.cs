@@ -9,7 +9,7 @@ namespace Persistence.DBContext
 {
     public class ApplicationDbContext : DbContext
     {
-        public string ConnectionString = @"Server = ODE10-2015; Database = LayerDB; Trusted_Connection = true";
+        public string ConnectionString = @"Server = LAPTOP-JHHCFN8D; Database = LayerDB; Trusted_Connection = true";
 
         public DbSet<Books> Books { get; set; }
         public DbSet<Creators> Creators { get; set; }
