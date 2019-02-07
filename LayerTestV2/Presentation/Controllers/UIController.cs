@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Business.Logic;
-using System.Web;
 
 namespace Presentation.Controllers
 {
@@ -14,16 +9,18 @@ namespace Presentation.Controllers
 
         public IActionResult Index()
         {
-
-            var Username = Request.Query["Username"];
-            var Password = Request.Query["Password"];
-
-            /*if (asd.Equals("POST")) {
-
-                
-            }*/
-            CA.addCustomer(Username, Password);
+            if (Request.Method.Equals("POST"))
+            {
+                var Username = Request.Form["Username"];
+                var Password = Request.Form["Password"];
+                CA.addCustomer(Username, Password);
+            }
             return View();
+        }
+
+        public IActionResult Print()
+        {
+            return View(CA.getAllCustomers());
         }
     }
 }

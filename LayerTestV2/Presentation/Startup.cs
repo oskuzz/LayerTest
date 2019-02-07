@@ -33,7 +33,7 @@ namespace Presentation
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute("Default", "{controller=UI}/{action=Index}/{id?}");
+                routes.MapRoute("Default", "{controller}/{action}/{id?}");
             });
 
         }
