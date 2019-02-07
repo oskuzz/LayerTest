@@ -24,8 +24,13 @@ namespace Business.Logic
             return user;
         }
 
-        public void addCustomer(Customer customer)
+        public void addCustomer(string un, string pw)
         {
+            Customer customer = new Customer();
+
+            customer.Username = un;
+            customer.Password = pw;
+
             db.Customer.Add(customer);
             db.SaveChanges();
         }
