@@ -11,10 +11,10 @@ namespace Business.Logic
     {
         public ApplicationDbContext db = new ApplicationDbContext();
 
-        public Customer GetCustomer(string un, string pw)
+        public Customer GetCustomer(string un)
         {
             var user = db.Customer
-                .Where(c => c.Username == un & c.Password == pw) as Customer;
+                .Where(c => c.Username == un) as Customer;
             return user;
         }
 

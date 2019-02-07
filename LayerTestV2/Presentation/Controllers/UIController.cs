@@ -22,5 +22,16 @@ namespace Presentation.Controllers
         {
             return View(CA.getAllCustomers());
         }
+
+        public IActionResult PrintCustomer()
+        {
+            if (Request.Method.Equals("POST"))
+            {
+                return View(CA.GetCustomer(Request.Form["Username"]));
+            } else
+            {
+                return View();
+            }
+        }
     }
 }
