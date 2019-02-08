@@ -20,17 +20,13 @@ namespace Presentation.Controllers
 
         public IActionResult Print()
         {
-            return View(CA.getAllCustomers());
-        }
-
-        public IActionResult PrintCustomer()
-        {
             if (Request.Method.Equals("POST"))
             {
                 return View(CA.GetCustomer(Request.Form["Username"]));
-            } else
+            }
+            else
             {
-                return View();
+                return View(CA.getAllCustomers());
             }
         }
     }
