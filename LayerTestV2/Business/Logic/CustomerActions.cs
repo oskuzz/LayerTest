@@ -1,9 +1,11 @@
-﻿using DataAccess.Database.AppDbContext;
+﻿using Business.Logic.Log;
+using DataAccess.Database.AppDbContext;
 using DataAccess.Database.Table;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace Business.Logic
 {
@@ -15,6 +17,9 @@ namespace Business.Logic
         {
             var user = db.Customer
                 .Where(c => c.Username.Contains(un)).ToList();
+
+            WriteLog log = new WriteLog();
+            log.writeLog("Käyttäjän hakeminen onnistui");
             return user;
         }
 
