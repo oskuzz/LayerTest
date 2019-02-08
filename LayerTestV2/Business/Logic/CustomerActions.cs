@@ -12,14 +12,15 @@ namespace Business.Logic
     public class CustomerActions
     {
         public ApplicationDbContext db = new ApplicationDbContext();
+        public WriteLog log = new WriteLog();
 
         public List<Customer> GetCustomer(string un)
         {
             var user = db.Customer
                 .Where(c => c.Username.Contains(un)).ToList();
 
-            WriteLog log = new WriteLog();
-            log.writeLog("Käyttäjän hakeminen onnistui");
+            
+            log.writeLog("Käyttäjän hakeminen onnistui: " + un, "searchCustomerLog.txt");
             return user;
         }
 
@@ -37,7 +38,13 @@ namespace Business.Logic
             customer.Password = pw;
 
             db.Customer.Add(customer);
-            db.SaveChanges();
+            if (db.SaveChanges() > 0)
+            {
+                log.writeLog("Käyttäjän luonti onnistui: " + un, "newCustomerLog.txt");
+            } else
+            {
+                log.writeLog("käyttäjän luonti epäonnistui", "newCustomerLog.txt");
+            }            
         }
     }
 }
