@@ -18,7 +18,7 @@ namespace Business.Logic.Log
             Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string path = Environment.CurrentDirectory;
 
-            System.IO.StreamWriter SW = new System.IO.StreamWriter(path + "../../../../../DataAccess/kuha_on_kala/kuha_ei_ole_kissa/" + file, true);
+            System.IO.StreamWriter SW = new System.IO.StreamWriter(path + "../../../../../DataAccess/Log/Logs/" + file, true);
             SW.Write(getDate() + "\r\n" + logdata + "\r\n\r\n");
             SW.Close();
         }
