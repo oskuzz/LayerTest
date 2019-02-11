@@ -9,7 +9,7 @@ namespace DataAccess.Database.AppDbContext
 {
     public class ApplicationDbContext : DbContext
     {
-        public string ConnectionString = @"Server = LAPTOP-JHHCFN8D; Database = LayerDB2; Trusted_Connection = true";
+        public string ConnectionString = @"Server = LAPTOP-19441AC2; Database = LayerDB2; Trusted_Connection = true";
 
         public DbSet<Customer> Customer { get; set; }
 
@@ -27,6 +27,10 @@ namespace DataAccess.Database.AppDbContext
 
             modelBuilder.Entity<Customer>()
                 .HasKey(c => c.CustomerID);
+
+            modelBuilder.Entity<Customer>()
+                .HasData(new Customer { CustomerID = 1, FirstName = "Test", LastName = "Tester", Displayname = "Test Tester", ImgFilePath = "", Password = "Test" });
+
         }
     }
 }
