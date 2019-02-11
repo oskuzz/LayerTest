@@ -30,5 +30,22 @@ namespace Presentation.Controllers
                 return View(CA.getAllCustomers());
             }
         }
+
+        public IActionResult Login()
+        {
+            if (Request.Method.Equals("POST"))
+            {
+                if(CA.login(Request.Form["displayName"], Request.Form["password"]))
+                {
+                    return RedirectToAction("Print", "UI");
+                } else
+                {
+                    return View();
+                }
+            } else
+            {
+                return View();
+            }
+        }
     }
 }
