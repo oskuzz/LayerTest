@@ -7,7 +7,7 @@
 
 <div>
 	<form method="post">
-		<input type="text" placeholder="Username" name="Username" />
+		<input type="text" placeholder="Display name" name="displayName" />
 		<button type="submit">Get customer</button>
 	</form>
 
@@ -15,21 +15,23 @@
 
 	<table>
 		<thead>
-			<tr>
-				<td>Customer ID</td>
-				<td>Username</td>
-				<td>Password</td>
-			</tr>
+            <tr>
+                <td>Customer ID</td>
+                <td>First name</td>
+                <td>Last name</td>
+                <td>Display name</td>
+            </tr>
 		</thead>
 		<tbody>
 			@{
 				foreach (var c in Model)
 				{
-					<tr>
-						<td>@c.CustomerID</td>
-						<td>@c.Displayname</td>
-						<td>@c.Password</td>
-					</tr>
+            <tr>
+                <td>@c.CustomerID</td>
+                <td>@c.FirstName</td>
+                <td>@c.LastName</td>
+                <td>@c.Displayname</td>
+            </tr>
 				}
 			}
 		</tbody>

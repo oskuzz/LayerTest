@@ -11,9 +11,10 @@ namespace Presentation.Controllers
         {
             if (Request.Method.Equals("POST"))
             {
-                var Username = Request.Form["Username"];
+                var firstName = Request.Form["firstName"];
+                var lastName = Request.Form["lastName"];
                 var Password = Request.Form["Password"];
-                CA.addCustomer(Username, Password);
+                CA.addCustomer(firstName, lastName, Password);
             }
             return View();
         }
@@ -22,7 +23,7 @@ namespace Presentation.Controllers
         {
             if (Request.Method.Equals("POST"))
             {
-                return View(CA.GetCustomer(Request.Form["Username"]));
+                return View(CA.GetCustomer(Request.Form["displayName"]));
             }
             else
             {
