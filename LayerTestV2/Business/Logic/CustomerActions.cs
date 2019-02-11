@@ -19,10 +19,10 @@ namespace Business.Logic
             var user = db.Customer.Select(c => new Customer
             {
                 CustomerID = c.CustomerID,
-                Username = c.Username,
+                Displayname = c.Displayname,
             })
-                .Where(c => c.Username.Contains(un)).ToList();
-
+                .Where(c => c.Displayname.Contains(un)).ToList();
+            
             
             log.writeLog("Käyttäjän hakeminen onnistui: " + un, "searchCustomerLog.txt");
             return user;
@@ -38,7 +38,7 @@ namespace Business.Logic
         {
             Customer customer = new Customer();
 
-            customer.Username = un;
+            customer.Displayname = un;
             customer.Password = pw;
 
             db.Customer.Add(customer);
