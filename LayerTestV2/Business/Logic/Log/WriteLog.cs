@@ -7,9 +7,13 @@ namespace Business.Logic.Log
 {
     public class WriteLog
     {
-        public DateTime getDate()
+        public String getDate()
         {
-            return DateTime.Now;
+            DateTime dateTime = DateTime.Now;
+
+            var dateString = dateTime.ToString("dd.MM.yyyy HH.mm.ss");
+
+            return dateString;
         }
 
         public void writeLog(string logdata, string file)
