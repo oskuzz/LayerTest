@@ -16,7 +16,11 @@ namespace Business.Logic
 
         public List<Customer> GetCustomer(string un)
         {
-            var user = db.Customer
+            var user = db.Customer.Select(c => new Customer
+            {
+                CustomerID = c.CustomerID,
+                Username = c.Username,
+            })
                 .Where(c => c.Username.Contains(un)).ToList();
 
             
