@@ -9,7 +9,7 @@ namespace DataAccess.Database.AppDbContext
 {
     public class ApplicationDbContext : DbContext
     {
-        public string ConnectionString = @"Server = LAPTOP-19441AC2; Database = LayerDB2; Trusted_Connection = true";
+        public string ConnectionString = @"Server = LAPTOP-JHHCFN8D; Database = LayerDB2; Trusted_Connection = true";
 
         public DbSet<Customer> Customer { get; set; }
 

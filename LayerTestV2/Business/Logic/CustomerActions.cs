@@ -14,41 +14,54 @@ namespace Business.Logic
         public ApplicationDbContext db = new ApplicationDbContext();
         public WriteLog log = new WriteLog();
 
-        public List<Customer> GetCustomer(string un)
+        public List<Customer> GetCustomer(string dn)
         {
             var user = db.Customer.Select(c => new Customer
             {
                 CustomerID = c.CustomerID,
+                FirstName = c.FirstName,
+                LastName = c.LastName,
                 Displayname = c.Displayname,
             })
-                .Where(c => c.Displayname.Contains(un)).ToList();
-            
-            
-            log.writeLog("Käyttäjän hakeminen onnistui: " + un, "searchCustomerLog.txt");
+                .Where(c => c.Displayname.Contains(dn)).ToList();
+
+
+            log.writeLog("Käyttäjän hakeminen onnistui: " + dn, "searchCustomerLog.txt");
             return user;
         }
 
         public List<Customer> getAllCustomers()
         {
-            var user = db.Customer.ToList();
+            var user = db.Customer.Select(c => new Customer
+            {
+                CustomerID = c.CustomerID,
+                FirstName = c.FirstName,
+                LastName = c.LastName,
+                Displayname = c.Displayname,
+            }).ToList();
             return user;
         }
 
-        public void addCustomer(string un, string pw)
+        public void addCustomer(string fn, string ln, string pw)
         {
             Customer customer = new Customer();
 
-            customer.Displayname = un;
+            var dn = fn + " " + ln;
+
+            customer.FirstName = fn;
+            customer.LastName = ln;
+            customer.Displayname = dn;
             customer.Password = pw;
 
             db.Customer.Add(customer);
             if (db.SaveChanges() > 0)
             {
-                log.writeLog("Käyttäjän luonti onnistui: " + un, "newCustomerLog.txt");
-            } else
+                log.writeLog("Käyttäjän luonti onnistui: " + dn, "newCustomerLog.txt");
+            }
+            else
             {
                 log.writeLog("käyttäjän luonti epäonnistui", "newCustomerLog.txt");
-            }            
+            }
         }
     }
 }
