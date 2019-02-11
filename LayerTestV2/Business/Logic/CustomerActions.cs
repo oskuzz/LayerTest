@@ -88,12 +88,20 @@ namespace Business.Logic
             }
         }
 
-        public static string MD5Hash(string input)
+        public string MD5Hash(string input)
         {
             using (var md5 = MD5.Create())
             {
                 var result = md5.ComputeHash(Encoding.ASCII.GetBytes(input));
-                return Encoding.ASCII.GetString(result);
+                Byte[] res = md5.Hash;
+
+                StringBuilder strBuilder = new StringBuilder();
+                for (int i = 0; i < res.Length; i++)
+                {
+                    strBuilder.Append(res[i].ToString());
+                }
+
+                return strBuilder.ToString();
             }
         }
     }
