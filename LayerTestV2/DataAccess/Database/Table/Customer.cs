@@ -8,7 +8,10 @@ namespace DataAccess.Database.Table
     public class Customer
     {
         public int CustomerID { get; set; }
-        public string Username { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Displayname { get; set; }
+        public string ImgFilePath { get; set; }
         public string Password { get; set; }
     }
 }

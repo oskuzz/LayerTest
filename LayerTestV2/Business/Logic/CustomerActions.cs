@@ -17,7 +17,7 @@ namespace Business.Logic
         public List<Customer> GetCustomer(string un)
         {
             var user = db.Customer
-                .Where(c => c.Username.Contains(un)).ToList();
+                .Where(c => c.Displayname.Contains(un)).ToList();
 
             
             log.writeLog("Käyttäjän hakeminen onnistui: " + un, "searchCustomerLog.txt");
@@ -34,7 +34,7 @@ namespace Business.Logic
         {
             Customer customer = new Customer();
 
-            customer.Username = un;
+            customer.Displayname = un;
             customer.Password = pw;
 
             db.Customer.Add(customer);
