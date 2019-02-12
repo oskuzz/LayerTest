@@ -16,13 +16,13 @@ namespace Business.Logic.Log
             return dateString;
         }
 
-        public void writeLog(string logdata, string file)
+        public void writeLog(string logdata)
         {
 
             Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string path = Environment.CurrentDirectory;
 
-            System.IO.StreamWriter SW = new System.IO.StreamWriter(path + "../../../../../DataAccess/Log/Logs/" + file, true);
+            System.IO.StreamWriter SW = new System.IO.StreamWriter(path + "../../../../../DataAccess/Log/LayerTester.log", true);
             SW.Write(getDate() + "\r\n" + logdata + "\r\n\r\n");
             SW.Close();
         }

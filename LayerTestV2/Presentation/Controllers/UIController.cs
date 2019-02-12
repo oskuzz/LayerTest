@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Business.Logic;
+using Business.Logic.Log;
 
 namespace Presentation.Controllers
 {

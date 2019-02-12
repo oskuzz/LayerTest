@@ -28,7 +28,7 @@ namespace Business.Logic
                 .Where(c => c.Displayname.Contains(dn)).ToList();
 
 
-            log.writeLog("Käyttäjän hakeminen onnistui: " + dn, "searchCustomerLog.txt");
+            log.writeLog("Käyttäjän hakeminen onnistui: " + dn);
             return user;
         }
 
@@ -46,22 +46,14 @@ namespace Business.Logic
 
         public bool login(string dn, string pw)
         {
-            var user = db.Customer.Select(c => new Customer
-            {
-                Displayname = c.Displayname,
-                Password = c.Password,
-            });
+            var user = db.Customer.ToList();
 
             foreach(var c in user)
             {
                 if(c.Displayname.Equals(dn) && c.Password.Equals(pw))
                 {
                     return true;
-                }else
-                {
-                    return false;
                 }
-
             }
             return false;
         }
@@ -75,16 +67,17 @@ namespace Business.Logic
             customer.FirstName = fn;
             customer.LastName = ln;
             customer.Displayname = dn;
+            customer.ImgFilePath = "";
             customer.Password = MD5Hash(pw);
 
             db.Customer.Add(customer);
             if (db.SaveChanges() > 0)
             {
-                log.writeLog("Käyttäjän luonti onnistui: " + dn, "newCustomerLog.txt");
+                log.writeLog("Käyttäjän luonti onnistui: " + dn);
             }
             else
             {
-                log.writeLog("käyttäjän luonti epäonnistui", "newCustomerLog.txt");
+                log.writeLog("käyttäjän luonti epäonnistui");
             }
         }
 
