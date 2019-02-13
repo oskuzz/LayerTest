@@ -1,6 +1,6 @@
 ﻿using Business.Logic.Log;
-using DataAccess.Database.AppDbContext;
-using DataAccess.Database.Table;
+using Storage.Database.AppDbContext;
+using Storage.Database.Table;
 using System;
 using System.Collections.Generic;
 using System.Linq;

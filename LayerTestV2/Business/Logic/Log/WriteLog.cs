@@ -22,7 +22,7 @@ namespace Business.Logic.Log
             Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string path = Environment.CurrentDirectory;
 
-            System.IO.StreamWriter SW = new System.IO.StreamWriter(path + "../../../../../DataAccess/Log/LayerTester.log", true);
+            System.IO.StreamWriter SW = new System.IO.StreamWriter(path + "../../../../../Storage/Log/LayerTester.log", true);
             SW.Write(getDate() + "\r\n" + logdata + "\r\n\r\n");
             SW.Close();
         }
