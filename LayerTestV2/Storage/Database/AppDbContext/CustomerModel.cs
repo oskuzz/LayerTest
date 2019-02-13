@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Storage.Log
+namespace Storage.Database.AppDbContext
 {
     public class CustomerModel : IEntityTypeConfiguration<Customer>
     {
