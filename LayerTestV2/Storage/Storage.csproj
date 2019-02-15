@@ -6,8 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190211123619_seed.cs" />
+    <Compile Remove="Migrations\20190211123619_seed.Designer.cs" />
     <Compile Remove="Migrations\20190213104547_test.cs" />
     <Compile Remove="Migrations\20190213104547_test.Designer.cs" />
+    <Compile Remove="Migrations\20190213104715_seed2.cs" />
+    <Compile Remove="Migrations\20190213104715_seed2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

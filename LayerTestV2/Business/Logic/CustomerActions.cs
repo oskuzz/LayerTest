@@ -7,12 +7,14 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Storage.Security;
 
 
 namespace Business.Logic
 {
     public class CustomerActions : ICustomerService
     {
+        public UserSecurity us = new UserSecurity();
         public ApplicationDbContext db = new ApplicationDbContext();
         public WriteLog log = new WriteLog();
 
@@ -57,7 +59,7 @@ namespace Business.Logic
 
             foreach (var c in user)
             {
-                if (c.Displayname.Equals(dn) && c.Password.Equals(pw))
+                if (c.Displayname.Equals(dn) && c.Password.Equals(us.MD5Hash(pw)))
                 {
                     return true;
                 }
@@ -65,43 +67,45 @@ namespace Business.Logic
             return false;
         }
 
-        public void addCustomer(string fn, string ln, string pw)
+        public Customer addCustomer(string fn, string ln, string pw)
         {
-            Customer customer = new Customer();
-
-            var dn = fn + " " + ln;
-
-            customer.FirstName = fn;
-            customer.LastName = ln;
-            customer.Displayname = dn;
-            customer.ImgFilePath = "";
-            customer.Password = MD5Hash(pw);
-
-            db.Customer.Add(customer);
-            if (db.SaveChanges() > 0)
+            try
             {
+                Customer customer = new Customer();
+
+                var dn = fn + " " + ln;
+
+                customer.FirstName = fn;
+                customer.LastName = ln;
+                customer.Displayname = dn;
+                customer.ImgFilePath = "";
+                customer.Password = us.MD5Hash(pw);
+
+                db.Customer.Add(customer);
+                db.SaveChanges();
                 log.writeLog("Käyttäjän luonti onnistui: " + dn);
+                return customer;
             }
-            else
+            catch (NullReferenceException e)
             {
-                log.writeLog("käyttäjän luonti epäonnistui");
+                log.writeLog("Käyttäjän luonti epäonnistui: " + e.ToString());
+                return null;
             }
         }
 
-        public string MD5Hash(string input)
+        public bool removeCustomer(string dn)
         {
-            using (var md5 = MD5.Create())
+            try
             {
-                var result = md5.ComputeHash(Encoding.ASCII.GetBytes(input));
-                Byte[] res = md5.Hash;
+                var customer = GetCustomer(dn);
 
-                StringBuilder strBuilder = new StringBuilder();
-                for (int i = 0; i < res.Length; i++)
-                {
-                    strBuilder.Append(res[i].ToString());
-                }
-
-                return strBuilder.ToString();
+                db.Customer.Remove(customer[0]);
+                db.SaveChanges();
+                return true;
+            }
+            catch (NullReferenceException e)
+            {
+                return false;
             }
         }
     }
@@ -111,6 +115,7 @@ namespace Business.Logic
         List<Customer> GetCustomer(string dn);
         List<Customer> getAllCustomers();
         bool login(string dn, string pw);
-        void addCustomer(string fn, string ln, string pw);
+        Customer addCustomer(string fn, string ln, string pw);
+        bool removeCustomer(string dn);
     }
 }

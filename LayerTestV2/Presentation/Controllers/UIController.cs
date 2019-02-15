@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Business.Logic;
-using Business.Logic.Log;
 
 namespace Presentation.Controllers
 {
@@ -36,7 +35,7 @@ namespace Presentation.Controllers
         {
             if (Request.Method.Equals("POST"))
             {
-                if(CA.login(Request.Form["displayName"], CA.MD5Hash(Request.Form["password"])))
+                if(CA.login(Request.Form["displayName"], Request.Form["password"]))
                 {
                     return RedirectToAction("Print", "UI");
                 } else

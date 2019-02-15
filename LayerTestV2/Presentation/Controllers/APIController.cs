@@ -23,17 +23,39 @@ namespace Presentation.Controllers
         CustomerActions CA = new CustomerActions();
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> index()
+        public async Task<IActionResult> Print()
         {
             var getCustomers = _customerService.getAllCustomers();
 
             return Ok(getCustomers);
         }
 
-        /*[HttpGet("[action]")]
-        public List<Customer> index()
+        [HttpGet("[action]/{dn}")]
+        public async Task<IActionResult> PrintOne(string dn)
         {
-            return CA.getAllCustomers();
-        }*/
+            var getCustomer = _customerService.GetCustomer(dn);
+
+            return Ok(getCustomer);
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> addCustomer(Customer customer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            Customer addedCustomer = _customerService.addCustomer(customer.FirstName, customer.LastName, customer.Password);
+
+            return Ok(addedCustomer);
+        }
+
+        [HttpGet("[action]/{dn}")]
+        public async Task<IActionResult> removeCustomer(string dn)
+        {
+            var customer = _customerService.removeCustomer(dn);
+            return Ok(customer);
+        }
+
     }
 }

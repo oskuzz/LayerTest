@@ -17,21 +17,54 @@ namespace XUnitTestProject1
         public async Task getAllTest()
         {
             var controller = new APIController(new CustomerActions());
-
-            var result = await controller.index();
-
+            var result = await controller.Print();
             var okResult = result.Should().BeOfType<OkObjectResult>().Subject;
-
             var customers = okResult.Value.Should().BeAssignableTo<IEnumerable<Customer>>().Subject;
 
             customers.Count().Should().BeGreaterOrEqualTo(2);
         }
 
-        /*[Fact]
+        [Fact]
         public async Task getSingle()
         {
+            string name = "Test Tester";
             var controller = new APIController(new CustomerActions());
-        }*/
+            var result = await controller.PrintOne(name);
+            var okResult = result.Should().BeOfType<OkObjectResult>().Subject;
+            var customer = okResult.Value.Should().BeAssignableTo<IEnumerable<Customer>>().Subject;
 
+            customer.Single().Displayname.Should().Be(name);
+        }
+
+        [Fact]
+        public async Task addCustomer()
+        {
+            var controller = new APIController(new CustomerActions());
+            var newCustomer = new Customer
+            {
+                FirstName = "Test3",
+                LastName = "Tester3",
+                Password = "Test3",
+            };
+
+            var result = await controller.addCustomer(newCustomer);
+            var okResult = result.Should().BeOfType<OkObjectResult>().Subject;
+            var customer = okResult.Value.Should().BeAssignableTo<Customer>().Subject;
+
+            customer.Displayname.Should().Be("Test3 Tester3");
+
+        }
+
+        [Fact]
+        public async Task removeCustomer()
+        {
+            string name = "Test3 Tester3";
+            var controller = new APIController(new CustomerActions());
+            var result = await controller.removeCustomer(name);
+            var okResult = result.Should().BeOfType<OkObjectResult>().Subject;
+            var customer = okResult.Value.Should().BeAssignableTo<bool>().Subject;
+
+            customer.Should().Be(true); 
+        }
     }
 }
