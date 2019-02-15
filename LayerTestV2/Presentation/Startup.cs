@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Business.Logic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,6 +19,8 @@ namespace Presentation
         {
             services.AddMvc();
             services.AddRouting();
+
+            services.AddScoped<ICustomerService, CustomerActions>();
 
         }
 

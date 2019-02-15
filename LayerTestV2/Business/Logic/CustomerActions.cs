@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Business.Logic
 {
-    public class CustomerActions
+    public class CustomerActions : ICustomerService
     {
         public ApplicationDbContext db = new ApplicationDbContext();
         public WriteLog log = new WriteLog();
@@ -41,6 +41,7 @@ namespace Business.Logic
                 LastName = c.LastName,
                 Displayname = c.Displayname,
             }).ToList();
+
             return user;
         }
 
@@ -48,9 +49,9 @@ namespace Business.Logic
         {
             var user = db.Customer.ToList();
 
-            foreach(var c in user)
+            foreach (var c in user)
             {
-                if(c.Displayname.Equals(dn) && c.Password.Equals(pw))
+                if (c.Displayname.Equals(dn) && c.Password.Equals(pw))
                 {
                     return true;
                 }
@@ -97,5 +98,13 @@ namespace Business.Logic
                 return strBuilder.ToString();
             }
         }
+    }
+
+    public interface ICustomerService
+    {
+        List<Customer> GetCustomer(string dn);
+        List<Customer> getAllCustomers();
+        bool login(string dn, string pw);
+        void addCustomer(string fn, string ln, string pw);
     }
 }

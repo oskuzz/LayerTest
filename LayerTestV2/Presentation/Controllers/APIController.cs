@@ -13,13 +13,27 @@ namespace Presentation.Controllers
     [ApiController]
     public class APIController : ControllerBase
     {
+        private ICustomerService _customerService;
+
+        public APIController(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
 
         CustomerActions CA = new CustomerActions();
 
         [HttpGet("[action]")]
+        public async Task<IActionResult> index()
+        {
+            var getCustomers = _customerService.getAllCustomers();
+
+            return Ok(getCustomers);
+        }
+
+        /*[HttpGet("[action]")]
         public List<Customer> index()
         {
             return CA.getAllCustomers();
-        }
+        }*/
     }
 }
