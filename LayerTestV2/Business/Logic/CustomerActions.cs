@@ -18,18 +18,24 @@ namespace Business.Logic
 
         public List<Customer> GetCustomer(string dn)
         {
-            var user = db.Customer.Select(c => new Customer
+            try
             {
-                CustomerID = c.CustomerID,
-                FirstName = c.FirstName,
-                LastName = c.LastName,
-                Displayname = c.Displayname,
-            })
-                .Where(c => c.Displayname.Contains(dn)).ToList();
-
-
-            log.writeLog("Käyttäjän hakeminen onnistui: " + dn);
-            return user;
+                var user = db.Customer.Select(c => new Customer
+                {
+                    CustomerID = c.CustomerID,
+                    FirstName = c.FirstName,
+                    LastName = c.LastName,
+                    Displayname = c.Displayname,
+                })
+                    .Where(c => c.Displayname.Contains(dn)).ToList();
+                log.writeLog("Käyttäjän hakeminen onnistui: " + dn);
+                return user;
+            }
+            catch (NullReferenceException e)
+            {
+                log.writeLog(e.ToString());
+                return null;
+            }
         }
 
         public List<Customer> getAllCustomers()

@@ -18,6 +18,7 @@ namespace Storage.Database.AppDbContext
 
             builder.HasData(new Customer { CustomerID = 1, FirstName = "Test", LastName = "Tester", Displayname = "Test Tester", ImgFilePath = "", Password = "Test" });
             builder.HasData(new Customer { CustomerID = 2, FirstName = "Test2", LastName = "Tester2", Displayname = "Test2 Tester2", ImgFilePath = "", Password = "Test2" });
+            
         }
     }
 }
