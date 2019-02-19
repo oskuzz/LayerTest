@@ -3,17 +3,27 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Controllers;
 using Storage.Database.Table;
+using Business.Logic.Log;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace XUnitTestProject1
+namespace Tests
 {
-    public class UnitTest1
+    public class CustomerTests
     {
-        [Fact]
+        //[Fact]
+        public async void AllTests()
+        {
+            await removeLatestTest();
+            await getAllTest();
+            await getSingleTest();
+            await addCustomerTest();
+            await removeCustomerTest();
+        }
+
         public async Task getAllTest()
         {
             var controller = new APIController(new CustomerActions());
@@ -24,8 +34,7 @@ namespace XUnitTestProject1
             customers.Count().Should().BeGreaterOrEqualTo(2);
         }
 
-        [Fact]
-        public async Task getSingle()
+        public async Task getSingleTest()
         {
             string name = "Test Tester";
             var controller = new APIController(new CustomerActions());
@@ -36,8 +45,7 @@ namespace XUnitTestProject1
             customer.Single().Displayname.Should().Be(name);
         }
 
-        [Fact]
-        public async Task addCustomer()
+        public async Task addCustomerTest()
         {
             var controller = new APIController(new CustomerActions());
             var newCustomer = new Customer
@@ -55,8 +63,7 @@ namespace XUnitTestProject1
 
         }
 
-        [Fact]
-        public async Task removeCustomer()
+        public async Task removeCustomerTest()
         {
             string name = "Test3 Tester3";
             var controller = new APIController(new CustomerActions());
@@ -65,6 +72,27 @@ namespace XUnitTestProject1
             var customer = okResult.Value.Should().BeAssignableTo<bool>().Subject;
 
             customer.Should().Be(true); 
+        }
+
+        WriteLog writeLog = new WriteLog();
+
+        [Fact]
+        public async Task removeLatestTest()
+        {
+            var controller = new APIController(new CustomerActions());
+            var dn = await controller.getLatest();
+            
+            foreach(var i in dn as Customer)
+            {
+
+            }
+            var result = await controller.removeCustomer(dn);
+            var okResult = result.Should().BeOfType<OkObjectResult>().Subject;
+            var customer = okResult.Value.Should().BeAssignableTo<bool>().Subject;
+
+            writeLog.writeLog(dn);
+
+            customer.Should().Be(true);
         }
     }
 }

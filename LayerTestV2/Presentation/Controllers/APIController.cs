@@ -57,5 +57,13 @@ namespace Presentation.Controllers
             return Ok(customer);
         }
 
+        [HttpGet("[action]")]
+        public async Task<IActionResult> getLatest()
+        {
+            var customer = _customerService.getLatest();
+
+            return Ok(customer);
+        }
+
     }
 }

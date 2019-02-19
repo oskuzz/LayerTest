@@ -105,7 +105,24 @@ namespace Business.Logic
             }
             catch (NullReferenceException e)
             {
+                log.writeLog("Käyttäjän poisto epäonnistui: " + e.ToString());
                 return false;
+            }
+        }
+
+        public Customer getLatest()
+        {
+            try
+            {
+                var customers = getAllCustomers();
+                var customer = customers.LastOrDefault();
+
+                return customer;
+            }
+            catch (NullReferenceException e)
+            {
+                log.writeLog("Uusimman käyttäjän poisto epäonnistui: " + e.ToString());
+                return null;
             }
         }
     }
@@ -117,5 +134,6 @@ namespace Business.Logic
         bool login(string dn, string pw);
         Customer addCustomer(string fn, string ln, string pw);
         bool removeCustomer(string dn);
+        Customer getLatest();
     }
 }
