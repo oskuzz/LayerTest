@@ -110,14 +110,16 @@ namespace Business.Logic
             }
         }
 
-        public Customer getLatest()
+        public string getLatestDisplayName()
         {
             try
             {
-                var customers = getAllCustomers();
-                var customer = customers.LastOrDefault();
-
-                return customer;
+                var lastCustomer = getAllCustomers().LastOrDefault();
+                Customer customer = new Customer
+                {
+                    Displayname = lastCustomer.Displayname,
+            };
+            return customer.Displayname;
             }
             catch (NullReferenceException e)
             {
@@ -134,6 +136,6 @@ namespace Business.Logic
         bool login(string dn, string pw);
         Customer addCustomer(string fn, string ln, string pw);
         bool removeCustomer(string dn);
-        Customer getLatest();
+        string getLatestDisplayName();
     }
 }

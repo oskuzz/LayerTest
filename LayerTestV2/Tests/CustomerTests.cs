@@ -14,7 +14,7 @@ namespace Tests
 {
     public class CustomerTests
     {
-        //[Fact]
+        [Fact]
         public async void AllTests()
         {
             await removeLatestTest();
@@ -74,23 +74,13 @@ namespace Tests
             customer.Should().Be(true); 
         }
 
-        WriteLog writeLog = new WriteLog();
-
-        [Fact]
         public async Task removeLatestTest()
         {
             var controller = new APIController(new CustomerActions());
-            var dn = await controller.getLatest();
-            
-            foreach(var i in dn as Customer)
-            {
-
-            }
+            var dn = controller.getLatestDn();
             var result = await controller.removeCustomer(dn);
             var okResult = result.Should().BeOfType<OkObjectResult>().Subject;
             var customer = okResult.Value.Should().BeAssignableTo<bool>().Subject;
-
-            writeLog.writeLog(dn);
 
             customer.Should().Be(true);
         }

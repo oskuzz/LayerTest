@@ -14,6 +14,7 @@ namespace Presentation.Controllers
     public class APIController : ControllerBase
     {
         private ICustomerService _customerService;
+        private userGenerator generator = new userGenerator();
 
         public APIController(ICustomerService customerService)
         {
@@ -58,12 +59,15 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> getLatest()
+        public string getLatestDn()
         {
-            var customer = _customerService.getLatest();
-
-            return Ok(customer);
+            return _customerService.getLatestDisplayName();
         }
 
+        [HttpGet("[action]/{value}")]
+        public void generateUsers(int value)
+        {
+            generator.generateUsers(value);
+        }
     }
 }
