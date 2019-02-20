@@ -15,15 +15,13 @@ namespace Tests
     public class CustomerTests
     {
         [Fact]
-        public async void AllTests()
+        public async void addAndRemove()
         {
-            await removeLatestTest();
-            await getAllTest();
-            await getSingleTest();
             await addCustomerTest();
             await removeCustomerTest();
         }
 
+        [Fact]
         public async Task getAllTest()
         {
             var controller = new APIController(new CustomerActions());
@@ -34,6 +32,7 @@ namespace Tests
             customers.Count().Should().BeGreaterOrEqualTo(2);
         }
 
+        [Fact]
         public async Task getSingleTest()
         {
             string name = "Test Tester";
@@ -74,6 +73,7 @@ namespace Tests
             customer.Should().Be(true); 
         }
 
+        [Fact]
         public async Task removeLatestTest()
         {
             var controller = new APIController(new CustomerActions());
