@@ -1,5 +1,4 @@
-﻿using Business.Logic.Log;
-using Storage.Database.AppDbContext;
+﻿using Storage.Database.AppDbContext;
 using Storage.Database.Table;
 using System;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Storage.Security;
+using Storage.Log;
 
 
 namespace Business.Logic

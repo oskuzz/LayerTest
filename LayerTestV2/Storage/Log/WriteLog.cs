@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Business.Logic.Log
+namespace Storage.Log
 {
     public class WriteLog
     {
@@ -22,7 +22,7 @@ namespace Business.Logic.Log
             Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string path = Environment.CurrentDirectory;
 
-            System.IO.StreamWriter SW = new System.IO.StreamWriter(path + "../../../../../Storage/Log/LayerTester.log", true);
+            System.IO.StreamWriter SW = new System.IO.StreamWriter(path + "../../../../../Storage/Log/Logs/LayerTester.log", true);
             SW.Write(getDate() + "\r\n" + logdata + "\r\n\r\n");
             SW.Close();
         }
